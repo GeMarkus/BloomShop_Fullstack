@@ -1,0 +1,142 @@
+[
+  {
+    "id": 1,
+    "name": "Monstera Deliciosa",
+    "price": 690,
+    "img": "https://www.harmony-plants.com/cdn/shop/products/5BCD4C1A-3AC6-4651-87A5-4E3B4E534A39.jpg",
+    "tag": "ยอดนิยม"
+  },
+  {
+    "id": 2,
+    "name": "Fiddle Leaf Fig",
+    "price": 1290,
+    "img": "https://www.dekorcompany.com/cdn/shop/files/HAL8615.png",
+    "tag": "แนะนำ"
+  },
+  {
+    "id": 3,
+    "name": "Snake Plant",
+    "price": 390,
+    "img": "https://shop-static.arborday.org/media/0004367_snake-plant.jpeg",
+    "tag": "ราคาดี"
+  },
+  {
+    "id": 4,
+    "name": "ZZ Plant",
+    "price": 590,
+    "img": "https://glasswingshop.com/cdn/shop/products/8D2A2069.jpg",
+    "tag": "ทนทาน"
+  },
+  {
+    "id": 5,
+    "name": "Pothos",
+    "price": 290,
+    "img": "https://abeautifulmess.com/wp-content/uploads/2023/06/GoldenPothos-1-1024x1024.jpg",
+    "tag": "มือใหม่"
+  },
+  {
+    "id": 6,
+    "name": "Peace Lily",
+    "price": 450,
+    "img": "https://radhakrishnaagriculture.in/cdn/shop/files/peacelily.jpg",
+    "tag": "ออกดอก"
+  },
+  {
+    "id": 7,
+    "name": "Calathea",
+    "price": 520,
+    "img": "https://cdn.shopify.com/s/files/1/0550/4771/6948/files/Spring_Starter_Pack_Flowers_Instagram_Post_Instagram_Post_7__mMLFt9674J.jpg",
+    "tag": "ลายสวย"
+  },
+  {
+    "id": 8,
+    "name": "Aloe Vera",
+    "price": 240,
+    "img": "https://m.media-amazon.com/images/I/41HjuO7VwjL._UF1000,1000_QL80_.jpg",
+    "tag": "ดูแลง่าย"
+  },
+  {
+    "id": 9,
+    "name": "Philodendron Birkin",
+    "price": 650,
+    "img": "https://www.moffatts.co.nz/cdn/shop/products/Birkin-whitepot.png?v=1659558097",
+    "tag": "ดูหรูหรา"
+  },
+  {
+    "id": 10,
+    "name": "Areca Palm",
+    "price": 1200,
+    "img": "https://potsforplants.ph/cdn/shop/products/areca-palm-palmera-849528_1200x1200.jpg?v=1697027415",
+    "tag": "ช่วยฟอกอากาศ"
+  },
+  {
+    "id": 11,
+    "name": "Rubber Plant",
+    "price": 850,
+    "img": "https://shop-static.arborday.org/media/0004362_tineke-variegated-rubber-tree_510.jpeg",
+    "tag": "สวยทน"
+  },
+  {
+    "id": 12,
+    "name": "Boston Fern",
+    "price": 390,
+    "img": "https://www.thejunglecollective.com.au/wp-content/uploads/2020/03/1829.-Boston-Fern-_.__e.m.i.l.y_.__.png",
+    "tag": "เพิ่มความชื้น"
+  },
+  {
+    "id": 13,
+    "name": "String of Pearls",
+    "price": 420,
+    "img": "https://tse3.mm.bing.net/th/id/OIP.oXfOAD5kSM-QYmZh2dF0zQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3",
+    "tag": "มินิมอล"
+  },
+  {
+    "id": 14,
+    "name": "Money Tree",
+    "price": 990,
+    "img": "https://interiorplants.ca/wp-content/uploads/2024/09/money-tree-in-deco-white-6inch-1.jpg",
+    "tag": "เสริมโชคลาภ"
+  },
+  {
+    "id": 15,
+    "name": "Jade Plant",
+    "price": 320,
+    "img": "https://theplants.com.my/wp-content/uploads/2025/05/Jade_Plant_SKU00028_01.jpg",
+    "tag": "ไม้อวบน้ำ"
+  },
+  {
+    "id": 16,
+    "name": "Bird of Paradise",
+    "price": 1500,
+    "img": "https://permaflora.co.th/wp-content/uploads/2026/02/IMG_2515-1-1.jpg",
+    "tag": "ต้นใหญ่"
+  },
+  {
+    "id": 17,
+    "name": "Spider Plant",
+    "price": 280,
+    "img": "https://m.media-amazon.com/images/I/61bfaK6hWpL._AC_UF1000,1000_QL80_.jpg",
+    "tag": "เลี้ยงง่ายมาก"
+  },
+  {
+    "id": 18,
+    "name": "English Ivy",
+    "price": 350,
+    "img": "https://nainitalsucculents.com/wp-content/uploads/2025/03/image__G0-768x768-Photoroom-4.jpg",
+    "tag": "ไม้เลื้อย"
+  },
+  {
+    "id": 19,
+    "name": "Aglaonema",
+    "price": 580,
+    "img": "https://plantnpot.com/cdn/shop/files/Aglaonema_Red_Joy_Kuwait.jpg?v=1757946047",
+    "tag": "ใบสีเงิน"
+  },
+  {
+    "id": 20,
+    "name": "Lavender",
+    "price": 490,
+    "img": "https://fitodesign.ee/wp-content/uploads/20240812_171641-scaled.jpg",
+    "tag": "มีกลิ่นหอม"
+  }
+]

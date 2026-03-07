@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <!-- กำหนด encoding -->
+  <meta charset="UTF-8" />
+  <!-- ให้เว็บ responsive -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- ชื่อแท็บ -->
+  <title>Bloom — Plant Shop</title>
+  <!-- ใช้ Tailwind CSS จาก CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- เร่งโหลดภาพ-->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,
+    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
+      <circle cx='50' cy='50' r='50' fill='%2310b981'/>
+      <text x='50' y='70' font-size='55' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'>B</text>
+    </svg>">
+  <!-- คำอธิบายเว็บ (SEO) -->
+  <meta name="description" content="Minimal online shop UI built with HTML + Tailwind CSS" />
+  <style>
+    /* ซ่อนลูกศรใน input number */
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+  </style>
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <!--  จุดเชื่อมต่อกับ main.tsx -->
+  </body>
+</html>
