@@ -31,7 +31,9 @@ const LoginModal: React.FC<Props> = ({ isOpen, onClose, onLoginSubmit }) => {
   return (
     <div
       className="fixed inset-0 z-50 bg-black/50 dark:bg-black/70 flex items-center justify-center transition-colors"
-      onClick={(e) => e.target === e.currentTarget && onClose()}
+      onMouseDown={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
     >
       <form
         onSubmit={submit}
