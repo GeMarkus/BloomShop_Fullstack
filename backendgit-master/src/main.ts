@@ -6,12 +6,11 @@ import { ValidationPipe } from '@nestjs/common';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // CORS สำหรับ dev + production
   app.enableCors({
     origin: [
       'http://localhost:5173',
       'http://localhost:5174',
-      process.env.FRONTEND_URL,
+      'https://bloomshop-fullstack.onrender.com',
     ],
     credentials: true,
     methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE', 'OPTIONS'],
@@ -29,7 +28,6 @@ async function bootstrap() {
 
   const port = process.env.PORT || 4000;
 
-  // สำคัญสำหรับ deploy
   await app.listen(port, '0.0.0.0');
 
   console.log(`API running on port ${port}`);
