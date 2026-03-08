@@ -68,59 +68,30 @@ const App: React.FC = () => {
     setCart((c) => ({ ...c, [id]: Math.max(1, qty || 1) }));
 
   // 👇 🌟 เพิ่มฟังก์ชัน handleCheckout ตรงนี้ได้เลยครับ 🌟 👇
- const handleCheckout = async () => {
-    // 1. ถ้ายังไม่ได้ล็อกอิน ให้เปิดหน้าต่างล็อกอิน
-    if (!currentUser) {
-      setIsCartOpen(false);
-      setIsLoginModalOpen(true);  
-      return;
-    }
-
+  const handleCheckout = () => {
     const entries = Object.entries(cart);
+
     if (entries.length === 0) {
-      alert("ตะกร้าสินค้าว่างเปล่า");
+      alert("ตะกร้าสินค้าว่าง");
       return;
     }
 
-    
-    const orderItems = entries.map(([id, qty]) => ({
-      productId: Number(id),
-      qty: Number(qty)
-    }));
+    const draftItems = entries.map(([id, qty]) => {
+      const product = productList.find((p) => p.id === Number(id));
 
-    try {
-      const { data: newOrder } = await api.post("/orders", {
-        items: orderItems
-      });
+      return {
+        productId: Number(id),
+        name: product?.name || "สินค้า",
+        price: product?.price || 0,
+        qty: Number(qty)
+      };
+    });
 
-      console.log("✅ Order created:", newOrder);
+    localStorage.setItem("orderDraft", JSON.stringify({ items: draftItems }));
 
-      const theOrderId =
-        newOrder.id || newOrder._id || newOrder.orderId || newOrder.data?.id;
+    setIsCartOpen(false);
 
-      if (theOrderId) {
-        localStorage.setItem("orderId", String(theOrderId));
-      }
-
-      const draftItems = entries.map(([id, qty]) => {
-        const product = productList.find((p) => p.id === Number(id));
-        return {
-          productId: Number(id),
-          name: product?.name || "สินค้า",
-          price: product?.price || 0,
-          qty: Number(qty)
-        };
-      });
-
-      localStorage.setItem("orderDraft", JSON.stringify({ items: draftItems }));
-
-      setIsCartOpen(false);
-      navigate("/payment");
-
-    } catch (err: any) {
-      console.error("Checkout Error:", err);
-      alert("เกิดข้อผิดพลาด: " + err.message);
-    }
+    navigate("/payment"); // ⭐ ไปหน้า Payment ก่อน
   };
   // 👆 ------------------------------------------------ 👆
 
