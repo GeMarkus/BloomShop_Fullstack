@@ -60,28 +60,20 @@ const Delivery: React.FC = () => {
 
     try {
       setSubmitting(true);
-      // รวมข้อมูลเป็นก้อนเดียวส่งไป Backend
+
       const fullAddress = `ที่อยู่: ${shippingText} | เบอร์โทร: ${phone} | อีเมล: ${email} | รหัสไปรษณีย์: ${postalCode}`;
 
-      const res = await fetch(`http://localhost:4000/api/orders/${orderId}/shipping`, {
-        method: "POST",
-        headers: { 
-          "Content-Type": "application/json", 
-          Authorization: `Bearer ${token}` 
-        },
-        body: JSON.stringify({ 
+      await api.post(`/orders/${orderId}/shipping`, {
         shippingAddress: fullAddress,
-        shippingFee: selected.cost, 
-        total: stats.total 
-        }),
+        shippingFee: selected.cost,
+        total: stats.total
       });
-      
-      if (!res.ok) throw new Error("บันทึกไม่สำเร็จ");
-      
+
       setIsAddressSaved(true);
       alert("✅ บันทึกข้อมูลการจัดส่งครบถ้วน!");
-    } catch (err: any) { 
-      alert("❌ Error: " + err.message); 
+
+    } catch (err: any) {
+      alert("❌ Error: " + err.message);
     } finally {
       setSubmitting(false);
     }

@@ -1,3 +1,4 @@
+// src/components/CartDrawer.tsx
 import React from "react";
 import type { Cart, Product } from "../lib/types";
 import { formatTHB } from "../lib/utils";

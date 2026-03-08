@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+
+import api from "../../lib/api";
 
 interface Product {
   _id: string;
@@ -21,7 +22,7 @@ const AdminProducts = () => {
   const fetchProducts = async () => {
     try {
       setLoading(true);
-      const res = await axios.get('http://localhost:4000/api/products');
+      const res = await api.get('/products');
       setProducts(res.data);
     } catch (err) {
       console.error("Error fetching products:", err);
@@ -47,7 +48,7 @@ const AdminProducts = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const baseUrl = "http://localhost:4000/api/products";
+    const baseUrl = "/products";
     const payload = {
       id: isEditMode ? undefined : Math.floor(Math.random() * 10000) + 100,
       name: formData.name,
@@ -62,10 +63,10 @@ const AdminProducts = () => {
       if (isEditMode) {
         const productToEdit = products.find(p => p._id === currentId);
         if (!productToEdit) return;
-        await axios.patch(`${baseUrl}/${productToEdit.id}`, payload);
+        await api.patch(`${baseUrl}/${productToEdit.id}`, payload);
         alert("🎉 แก้ไขข้อมูลสำเร็จ!");
       } else {
-        await axios.post(baseUrl, payload);
+        await api.post(baseUrl, payload);
         alert("🚀 เพิ่มสินค้าใหม่แล้ว!");
       }
       setIsModalOpen(false);
@@ -78,7 +79,7 @@ const AdminProducts = () => {
   const handleDelete = async (numericId: number, name: string) => {
     if (window.confirm(`ยืนยันการลบสินค้า "${name}"?`)) {
       try {
-        await axios.delete(`http://localhost:4000/api/products/${numericId}`);
+        await api.delete(`/products/${numericId}`);
         fetchProducts();
       } catch (err) {
         alert("ลบไม่สำเร็จมึง!");

@@ -1,15 +1,16 @@
 // src/components/admin/AdminOrders.tsx
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+
 // 🌿 1. นำเข้าข้อมูลสินค้าจาก data.ts (เช็ค path ให้ถูกนะมึง)
 import { products } from "../../lib/data"; 
+import api from "../../lib/api";
 
 const AdminOrders = () => {
   const [orders, setOrders] = useState<any[]>([]);
 
   const fetchOrders = async () => {
     try {
-      const res = await axios.get('http://localhost:4000/api/orders/admin/all');
+      const res = await api.get('/orders/admin/all');
       setOrders(res.data);
     } catch (err) { console.error(err); }
   };
@@ -19,7 +20,7 @@ const AdminOrders = () => {
   const handleDelete = async (id: string) => {
     if (!window.confirm("จะลบออเดอร์นี้จริงๆ เหรอ?")) return;
     try {
-      await axios.delete(`http://localhost:4000/api/orders/${id}`, {
+      await api.delete(`/orders/${id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       fetchOrders();
@@ -29,7 +30,7 @@ const AdminOrders = () => {
   const handleUpdateStatus = async (id: string, newStatus: string) => {
     if (!window.confirm(`ยืนยันการเปลี่ยนสถานะเป็น ${newStatus} ใช่ไหม?`)) return;
     try {
-      await axios.patch(`http://localhost:4000/api/orders/${id}/status`, 
+      await api.patch(`/orders/${id}/status`, 
         { status: newStatus },
         { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
       );

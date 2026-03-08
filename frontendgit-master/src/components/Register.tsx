@@ -1,7 +1,7 @@
 // src/components/Register.tsx
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import api from "../lib/api"; // ✅ ให้แน่ใจว่า baseURL ถูกต้อง (เช่น http://localhost:4000/api)
+import api from "../lib/api"; 
 
 type RegisterResponse = {
     _id: string;

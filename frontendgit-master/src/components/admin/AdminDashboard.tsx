@@ -1,10 +1,10 @@
 // src/components/admin/AdminDashboard.tsx
 import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate, Routes, Route } from 'react-router-dom';
-import axios from 'axios';
 import AdminProducts from "./AdminProducts";
 import AdminOrders from "./AdminOrders";
 import AdminUser from "./AdminUser";
+import api from "../../lib/api"; // ✅ ใช้ api ที่ตั้งค่า baseURL และ token ไว้แล้ว
 
 export default function AdminDashboard() {
   const location = useLocation();
@@ -22,8 +22,8 @@ export default function AdminDashboard() {
   const fetchSummary = async () => {
     try {
       const [userRes, orderRes] = await Promise.all([
-        axios.get('http://localhost:4000/api/users'), // สมมติว่ามี endpoint นี้
-        axios.get('http://localhost:4000/api/orders/admin/all')
+        api.get('/users'),
+        api.get('/orders/admin/all')
       ]);
 
       const users = userRes.data;

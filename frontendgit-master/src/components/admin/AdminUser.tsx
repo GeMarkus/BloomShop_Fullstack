@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import api from "../../lib/api";
 
 interface User {
   _id: string;
@@ -17,7 +17,7 @@ const AdminUser = () => {
 
   const fetchUsers = async () => {
     try {
-      const res = await axios.get('http://localhost:4000/api/users');
+      const res = await api.get('/users');
       setUsers(res.data);
     } catch (err) {
       console.error("ดึงข้อมูลพลาด");
@@ -37,7 +37,7 @@ const AdminUser = () => {
     e.preventDefault();
     if (!editingUser) return;
     try {
-      await axios.patch(`http://localhost:4000/api/users/${editingUser._id}`, formData);
+      await api.patch(`/users/${editingUser._id}`, formData);
       alert("อัปเดตข้อมูลสำเร็จ!");
       setEditingUser(null);
       fetchUsers();
@@ -51,7 +51,7 @@ const AdminUser = () => {
     if (window.confirm(`มึงแน่ใจนะว่าจะลบคุณ ${username}?`)) {
       try {
         // เรียกไปที่ DELETE /api/users/:id
-        await axios.delete(`http://localhost:4000/api/users/${id}`);
+        await api.delete(`/users/${id}`);
         alert("ลบเรียบร้อยแล้วมึง!");
         fetchUsers(); // ดึงข้อมูลใหม่มาโชว์ทันที
       } catch (err) {

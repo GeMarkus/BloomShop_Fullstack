@@ -89,37 +89,19 @@ const App: React.FC = () => {
     }));
 
     try {
-      // 🌟 2. ยิง API (แก้ URL เติม /api ให้ตรงกับ Backend แล้ว)
-      const res = await fetch("http://localhost:4000/api/orders", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`
-        },
-        body: JSON.stringify({ items: orderItems })
+      const { data: newOrder } = await api.post("/orders", {
+        items: orderItems
       });
 
-      if (!res.ok) {
-        const errData = await res.json().catch(() => ({}));
-        throw new Error(errData.message || "สร้างออเดอร์ไม่สำเร็จ (เช็ค URL หรือ Backend)");
-      }
+      console.log("✅ Order created:", newOrder);
 
-      const newOrder = await res.json();
-      
-      // 🌟 แอบปริ้นท์ดูข้อมูลที่ Backend ส่งมาใน Console (F12) 
-      console.log("✅ ข้อมูลออเดอร์ที่ Backend ส่งมาคือ:", newOrder);
+      const theOrderId =
+        newOrder.id || newOrder._id || newOrder.orderId || newOrder.data?.id;
 
-      // 🌟 3. ดักจับ ID ทุกรูปแบบที่ Backend อาจจะส่งมา
-      const theOrderId = newOrder.id || newOrder._id || newOrder.orderId || newOrder.data?.id;
-      
       if (theOrderId) {
-        localStorage.setItem("orderId", String(theOrderId)); // เซฟลงกระเป๋าสำเร็จ!
-      } else {
-        console.error("❌ หา orderId ไม่เจอ! รูปแบบข้อมูลคือ:", newOrder);
-        alert("สร้างออเดอร์สำเร็จ แต่หา ID ไม่เจอ (ลองเช็ค Console F12 ดูครับ)");
+        localStorage.setItem("orderId", String(theOrderId));
       }
 
-      // 4. เซฟ Draft ของตะกร้าไว้โชว์หน้า Payment/Delivery
       const draftItems = entries.map(([id, qty]) => {
         const product = productList.find((p) => p.id === Number(id));
         return {
@@ -129,9 +111,9 @@ const App: React.FC = () => {
           qty: Number(qty)
         };
       });
+
       localStorage.setItem("orderDraft", JSON.stringify({ items: draftItems }));
 
-      // 5. ปิดตะกร้า แล้วพาไปหน้าชำระเงิน
       setIsCartOpen(false);
       navigate("/payment");
 
@@ -139,7 +121,6 @@ const App: React.FC = () => {
       console.error("Checkout Error:", err);
       alert("เกิดข้อผิดพลาด: " + err.message);
     }
-  };
   // 👆 ------------------------------------------------ 👆
 
   // --------- AUTH HANDLERS ---------
