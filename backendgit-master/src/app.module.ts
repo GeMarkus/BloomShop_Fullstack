@@ -12,7 +12,7 @@ import { OrdersModule } from './orders/orders.module';
     ConfigModule.forRoot({ isGlobal: true }),
 
     MongooseModule.forRoot(
-      'mongodb+srv://BloomShop:123456789Xd@bloomshop.xhhw8ty.mongodb.net/bloom_shop'
+      'mongodb+srv://BloomShop:123456789Xd@bloomshop.xhhw8ty.mongodb.net/'
     ),
 
     ProductsModule,
