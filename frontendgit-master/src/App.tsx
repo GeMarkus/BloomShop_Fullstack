@@ -69,12 +69,33 @@ const App: React.FC = () => {
 
   // 👇 🌟 เพิ่มฟังก์ชัน handleCheckout ตรงนี้ได้เลยครับ 🌟 👇
  const handleCheckout = async () => {
-    // 1. ถ้ายังไม่ได้ล็อกอิน ให้เปิดหน้าต่างล็อกอิน
-    if (!currentUser) {
-      setIsCartOpen(false);
-      setIsLoginModalOpen(true);  
-      return;
-    }
+
+  if (!currentUser) {
+    setIsCartOpen(false);
+    setIsLoginModalOpen(true);
+    return;
+  }
+
+  const entries = Object.entries(cart);
+      if (entries.length === 0) {
+        alert("ตะกร้าสินค้าว่างเปล่า");
+        return;
+      }
+
+      try {
+        const { data: newOrder } = await api.post("/orders", {
+          items: entries.map(([id, qty]) => ({
+            productId: Number(id),
+            qty: Number(qty)
+          }))
+        });
+
+        navigate("/payment");
+
+      } catch (err: any) {
+        console.error("Checkout Error:", err);
+      }
+    };
 
     const entries = Object.entries(cart);
     if (entries.length === 0) {
@@ -314,5 +335,5 @@ const App: React.FC = () => {
 
   );
 };
-}
+
 export default App;
