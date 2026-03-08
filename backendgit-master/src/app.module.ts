@@ -1,6 +1,6 @@
 // src/app.module.ts
 import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ProductsModule } from './products/products.module';
 import { AuthModule } from './auth/auth.module';
@@ -11,12 +11,9 @@ import { OrdersModule } from './orders/orders.module';
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
 
-    MongooseModule.forRootAsync({
-      inject: [ConfigService],
-      useFactory: (config: ConfigService) => ({
-        uri: config.get<string>('MONGO_URI'),
-      }),
-    }),
+    MongooseModule.forRoot(
+      'mongodb+srv://BloomShop:123456789Xd@bloomshop.xhhw8ty.mongodb.net/bloom_shop'
+    ),
 
     ProductsModule,
     AuthModule,
