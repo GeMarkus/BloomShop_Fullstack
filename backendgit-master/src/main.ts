@@ -6,20 +6,31 @@ import { ValidationPipe } from '@nestjs/common';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  // CORS สำหรับ dev + production
   app.enableCors({
     origin: [
       'http://localhost:5173',
-      'http://localhost:5174', // ✅ เพิ่มพอร์ตที่คุณใช้อยู่จริง
+      'http://localhost:5174',
+      process.env.FRONTEND_URL, // frontend domain ตอน deploy
     ],
     credentials: true,
     methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
   });
 
-  app.setGlobalPrefix('api'); // คุณใช้ /api อยู่แล้ว
-  app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
+  app.setGlobalPrefix('api');
 
-  await app.listen(process.env.PORT || 4000);
-  console.log(`API on http://localhost:${process.env.PORT || 4000}/api`);
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      transform: true,
+    }),
+  );
+
+  const port = process.env.PORT || 4000;
+  await app.listen(port);
+
+  console.log(`API running on port ${port}`);
 }
+
 bootstrap();
