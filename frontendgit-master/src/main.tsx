@@ -20,7 +20,7 @@ import RequireAdmin from "./components/RequireAdmin";
 // eslint-disable-next-line react-refresh/only-export-components
 function RootRoutes() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [cart, setCart] = useState<Cart>(() =>
+  const [cart] = useState<Cart>(() =>
     loadLocalStorage<Cart>("cart", {})
   );
   useLocalStorage("cart", cart);

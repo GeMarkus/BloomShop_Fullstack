@@ -1,5 +1,5 @@
 // src/components/admin/AdminOrders.tsx
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 // 🌿 1. นำเข้าข้อมูลสินค้าจาก data.ts (เช็ค path ให้ถูกนะมึง)
 import { products } from "../../lib/data"; 

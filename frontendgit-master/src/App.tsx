@@ -72,7 +72,7 @@ const App: React.FC = () => {
     // 1. ถ้ายังไม่ได้ล็อกอิน ให้เปิดหน้าต่างล็อกอิน
     if (!currentUser) {
       setIsCartOpen(false);
-      setIsLoginModalOpen(true);
+      setIsLoginModalOpen(true);  
       return;
     }
 
@@ -160,17 +160,13 @@ const App: React.FC = () => {
     }
   };
 
-
-
-  const handleRegister = async (username: string, email: string, pass: string) => {
-    const { data: u } = await api.post('/auth/register', { username, email, password: pass });
-    localStorage.setItem('token', u.token);
-    localStorage.setItem('user', JSON.stringify({ _id: u._id, username: u.username, email: u.email }));
-    setCurrentUser({ _id: u._id, username: u.username, email: u.email});
-    setIsLoginModalOpen(false); // ปิด modal ถ้ามี
-
-    
-  };
+  //const handleRegister = async (username: string, email: string, pass: string) => {
+   // const { data: u } = await api.post('/auth/register', { username, email, password: pass });
+   // localStorage.setItem('token', u.token);
+    //localStorage.setItem('user', JSON.stringify({ _id: u._id, username: u.username, email: u.email }));
+   // setCurrentUser({ _id: u._id, username: u.username, email: u.email});
+   // setIsLoginModalOpen(false); // ปิด modal ถ้ามี
+  //};
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -299,16 +295,7 @@ const App: React.FC = () => {
               onChangeQty={handleChangeQty}
               onSetQty={handleSetQty}
               onRemove={handleRemoveFromCart}
-              onCheckout={() => {
-                // ถ้ายังไม่ได้ล็อกอิน ให้เปิด Login ก่อน
-                if (!currentUser) {
-                  setIsCartOpen(false);
-                  setIsLoginModalOpen(true);
-                  return;
-                }
-                setIsCartOpen(false);
-                navigate("/payment");
-              }}
+              onCheckout={handleCheckout}
             />
           </>
         }

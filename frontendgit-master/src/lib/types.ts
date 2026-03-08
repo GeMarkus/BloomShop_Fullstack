@@ -1,3 +1,4 @@
+// src/lib/types.ts
 export type Product = {
   id: number;
   name: string;
@@ -15,4 +16,5 @@ export type User = {
   _id: string;
   username: string;
   email: string;
+  role?: string;
 };

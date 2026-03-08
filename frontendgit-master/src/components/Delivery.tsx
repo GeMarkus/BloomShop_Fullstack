@@ -28,7 +28,7 @@ const Delivery: React.FC = () => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [isAddressSaved, setIsAddressSaved] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [selected, setSelected] = useState({ id: "standard", cost: 50, time: "5-7 Days" });
+  const [selected, setSelected] = useState({ id: "standard", name: "Standard Delivery", cost: 50, time: "5-7 Days" });
 
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");

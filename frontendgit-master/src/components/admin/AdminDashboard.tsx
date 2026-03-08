@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+// src/components/admin/AdminDashboard.tsx
+import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate, Routes, Route } from 'react-router-dom';
 import axios from 'axios';
 import AdminProducts from "./AdminProducts";
