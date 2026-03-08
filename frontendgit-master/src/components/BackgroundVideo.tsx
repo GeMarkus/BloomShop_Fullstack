@@ -1,3 +1,4 @@
+// src/components/BackgroundVideo.tsx
 const BackgroundVideo: React.FC = () => (
   <div className="fixed inset-0 -z-10 overflow-hidden">
 

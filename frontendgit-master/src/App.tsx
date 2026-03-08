@@ -202,88 +202,89 @@ const App: React.FC = () => {
   );
 
   return (
-    <Routes>
-      {/* 🏠 Main Shop Page */}
-      <Route
-        path="/"
-        element={
-          <>
-            <BackgroundVideo />
-            <Header
-              searchTerm={searchTerm}
-              setSearchTerm={setSearchTerm}
-              onRecommend={handleRecommend}
-              onOpenCart={() => setIsCartOpen(true)}
-              cartCount={cartItemCount}
-              currentUser={currentUser}
-              onLoginOpen={() => setIsLoginModalOpen(true)}
-              onLogout={handleLogout}
-            />
-            <Hero />
-            <Features />
-            <ProductsSection
-              products={filteredProducts}
-              onAddToCart={handleAddToCart}
-              filter={filter}
-              setFilter={setFilter}
-            />
-            <Newsletter />
-            <Footer />
-            <RecommendModal
-              open={isRecommendOpen}
-              onClose={() => setIsRecommendOpen(false)}
-              plant={recommendedPlant}
-              reason={recommendedReason}
-            />
-            <LoginModal
-              isOpen={isLoginModalOpen}
-              onClose={() => setIsLoginModalOpen(false)}
-              onLoginSubmit={handleLogin}
-            />
-            <CartDrawer
-              open={isCartOpen}
-              onClose={() => setIsCartOpen(false)}
+    <>
+      <BackgroundVideo />
+
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <Header
+                searchTerm={searchTerm}
+                setSearchTerm={setSearchTerm}
+                onRecommend={handleRecommend}
+                onOpenCart={() => setIsCartOpen(true)}
+                cartCount={cartItemCount}
+                currentUser={currentUser}
+                onLoginOpen={() => setIsLoginModalOpen(true)}
+                onLogout={handleLogout}
+              />
+              <Hero />
+              <Features />
+              <ProductsSection
+                products={filteredProducts}
+                onAddToCart={handleAddToCart}
+                filter={filter}
+                setFilter={setFilter}
+              />
+              <Newsletter />
+              <Footer />
+              <RecommendModal
+                open={isRecommendOpen}
+                onClose={() => setIsRecommendOpen(false)}
+                plant={recommendedPlant}
+                reason={recommendedReason}
+              />
+              <LoginModal
+                isOpen={isLoginModalOpen}
+                onClose={() => setIsLoginModalOpen(false)}
+                onLoginSubmit={handleLogin}
+              />
+              <CartDrawer
+                open={isCartOpen}
+                onClose={() => setIsCartOpen(false)}
+                cart={cart}
+                products={productList}
+                onChangeQty={handleChangeQty}
+                onSetQty={handleSetQty}
+                onRemove={handleRemoveFromCart}
+                onCheckout={handleCheckout}
+              />
+            </>
+          }
+        />
+        <Route
+          path="/payment"
+          element={
+            <RequireAuth>
+              <Payment cart={cart} products={productList} />
+            </RequireAuth>
+          }
+        />
+        {/* 💰 Payment Page */}
+        <Route
+          path="/payment"
+          element={
+            <Payment
               cart={cart}
-              products={productList}
-              onChangeQty={handleChangeQty}
-              onSetQty={handleSetQty}
-              onRemove={handleRemoveFromCart}
-              onCheckout={handleCheckout}
+              products={productList}   // ตัวเดียวกับที่ใช้แสดงรายการสินค้า
+              onGoToTransport={() => navigate("/delivery")}  // พาไปหน้า delivery จริง
             />
-          </>
-        }
-      />
-      <Route
-        path="/payment"
-        element={
-          <RequireAuth>
-            <Payment cart={cart} products={productList} />
-          </RequireAuth>
-        }
-      />
-      {/* 💰 Payment Page */}
-      <Route
-        path="/payment"
-        element={
-          <Payment
-            cart={cart}
-            products={productList}   // ตัวเดียวกับที่ใช้แสดงรายการสินค้า
-            onGoToTransport={() => navigate("/delivery")}  // พาไปหน้า delivery จริง
-          />
-        }
-      />
+          }
+        />
 
 
-      <Route path="/orders" element={<OrderHistory />} />
-      <Route 
-      path="/register" 
-      element={<Register onLoginSuccess={(u) => setCurrentUser(u)} />} 
-      />
-      <Route element={<RequireAdmin />}>
-        <Route path="/admin/*" element={<AdminDashboard />} /> {/* เพิ่ม /* เข้าไปตรงนี้ครับ */}
-      </Route>
-    </Routes>
-
+        <Route path="/orders" element={<OrderHistory />} />
+        <Route 
+        path="/register" 
+        element={<Register onLoginSuccess={(u) => setCurrentUser(u)} />} 
+        />
+        <Route element={<RequireAdmin />}>
+          <Route path="/admin/*" element={<AdminDashboard />} /> {/* เพิ่ม /* เข้าไปตรงนี้ครับ */}
+        </Route>
+      </Routes>
+    </>
   );
 };
 
