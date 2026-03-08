@@ -1,6 +1,7 @@
 // src/components/Delivery.tsx
 import React, { useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import api from "../lib/api";
 
 const fmt = (n: number) => new Intl.NumberFormat("th-TH", { 
   style: "currency", 
@@ -11,7 +12,7 @@ const Delivery: React.FC = () => {
   const navigate = useNavigate();
 
   // ---------- ดึงข้อมูลจาก LocalStorage ----------
-  const { draft, token, orderId } = useMemo(() => {
+  const { draft, orderId } = useMemo(() => {
     const rawDraft = localStorage.getItem("orderDraft");
     // ดึง orderId และล้างเครื่องหมายคำพูด (ถ้ามี)
     const rawOrderId = localStorage.getItem("orderId");

@@ -82,7 +82,7 @@ const App: React.FC = () => {
       return;
     }
 
-    const token = localStorage.getItem("token");
+    
     const orderItems = entries.map(([id, qty]) => ({
       productId: Number(id),
       qty: Number(qty)
