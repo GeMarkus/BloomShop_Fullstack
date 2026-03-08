@@ -38,7 +38,7 @@ const OrderHistory: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState<string | null>(null);
   const [printingId, setPrintingId] = useState<string | null>(null); // ✅ เก็บ ID ออเดอร์ที่จะพิมพ์ใบเดียว
-  const navigate = useNavigate();
+
 
   const load = async (pg = 1) => {
     try {
