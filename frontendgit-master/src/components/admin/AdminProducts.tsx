@@ -96,7 +96,7 @@ const AdminProducts = () => {
     }
   };
 
-  if (loading) return <div style={{ textAlign: 'center', padding: '50px' }}>正在加载... (กำลังโหลด...)</div>;
+  if (loading) return <div style={{ textAlign: 'center', padding: '50px' }}>Loading...</div>;
 
   return (
     <div>
